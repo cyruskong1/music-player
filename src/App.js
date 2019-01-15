@@ -1,8 +1,15 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+
+import logo from "./logo.svg";
+import "./App.css";
+import { mockAction } from "../src/redux/actions/actions";
 
 class App extends Component {
+  handleOnClick = event => {
+    this.props.actions.mockAction(event);
+  };
+
   render() {
     return (
       <div className="App">
@@ -18,4 +25,15 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  mockAction: () => dispatch(mockAction())
+});
+
+const mapStateToProps = state => ({
+  ...state
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
