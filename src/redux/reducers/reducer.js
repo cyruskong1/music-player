@@ -1,6 +1,7 @@
 import {
   MOCK_ACTION,
-  TEXTBOX_ONCHANGE
+  TEXTBOX_ONCHANGE,
+  SEARCH
 } from "../../constants/action_constants";
 import initialModel from "../../model/initialState";
 
@@ -12,8 +13,12 @@ export default function reducer(initialState = initialModel, action) {
     case TEXTBOX_ONCHANGE:
       return {
         ...initialState,
-        ...action.data
+        ...{ [action.data.key]: action.data.value }
       };
+
+    case SEARCH:
+      return initialState;
+
     default:
       return initialState;
   }

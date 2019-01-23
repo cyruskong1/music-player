@@ -11,11 +11,10 @@ import Textbox from "./components/pure-components/Textbox";
 
 class App extends Component {
   handleOnClick = event => {
-    this.props.actions.mockAction(event);
+    this.props.actions.search(event);
   };
 
   handleOnChange = (event, name) => {
-    console.log("event in component", this.props);
     this.props.actions.textboxOnChange(event, name);
   };
 
@@ -24,7 +23,6 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <Textbox
             value={searchField}
             onChange={this.handleOnChange}
